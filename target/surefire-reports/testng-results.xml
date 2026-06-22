@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-06-22T12:22:36 IST" name="Surefire suite" finished-at="2026-06-22T12:22:37 IST" duration-ms="1221">
+    <groups>
+    </groups>
+    <test started-at="2026-06-22T12:22:36 IST" name="Surefire test" finished-at="2026-06-22T12:22:37 IST" duration-ms="1221">
+      <class name="com.automation.UserApiTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.automation.UserApiTest@971d0d8]" started-at="2026-06-22T12:22:36 IST" name="setup" finished-at="2026-06-22T12:22:36 IST" duration-ms="139" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="getInvalidUser_shouldReturn404()[pri:0, instance:com.automation.UserApiTest@971d0d8]" started-at="2026-06-22T12:22:36 IST" name="getInvalidUser_shouldReturn404" finished-at="2026-06-22T12:22:37 IST" duration-ms="756" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getInvalidUser_shouldReturn404 -->
+        <test-method signature="getUser_shouldHaveEmail()[pri:0, instance:com.automation.UserApiTest@971d0d8]" started-at="2026-06-22T12:22:37 IST" name="getUser_shouldHaveEmail" finished-at="2026-06-22T12:22:37 IST" duration-ms="262" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getUser_shouldHaveEmail -->
+        <test-method signature="getUser_shouldReturn200()[pri:0, instance:com.automation.UserApiTest@971d0d8]" started-at="2026-06-22T12:22:37 IST" name="getUser_shouldReturn200" finished-at="2026-06-22T12:22:37 IST" duration-ms="53" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getUser_shouldReturn200 -->
+      </class> <!-- com.automation.UserApiTest -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

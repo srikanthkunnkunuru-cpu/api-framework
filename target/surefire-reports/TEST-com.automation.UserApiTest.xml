@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.automation.UserApiTest" time="1.373" tests="3" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="17"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/srikanthkunnkunuru/api-framework/target/test-classes:/Users/srikanthkunnkunuru/api-framework/target/classes:/Users/srikanthkunnkunuru/.m2/repository/io/rest-assured/rest-assured/5.5.0/rest-assured-5.5.0.jar:/Users/srikanthkunnkunuru/.m2/repository/org/apache/groovy/groovy/4.0.22/groovy-4.0.22.jar:/Users/srikanthkunnkunuru/.m2/repository/org/apache/groovy/groovy-xml/4.0.22/groovy-xml-4.0.22.jar:/Users/srikanthkunnkunuru/.m2/repository/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar:/Users/srikanthkunnkunuru/.m2/repository/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar:/Users/srikanthkunnkunuru/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/srikanthkunnkunuru/.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11.jar:/Users/srikanthkunnkunuru/.m2/repository/org/apache/httpcomponents/httpmime/4.5.13/httpmime-4.5.13.jar:/Users/srikanthkunnkunuru/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/srikanthkunnkunuru/.m2/repository/org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar:/Users/srikanthkunnkunuru/.m2/repository/io/rest-assured/json-path/5.5.0/json-path-5.5.0.jar:/Users/srikanthkunnkunuru/.m2/repository/org/apache/groovy/groovy-json/4.0.22/groovy-json-4.0.22.jar:/Users/srikanthkunnkunuru/.m2/repository/io/rest-assured/rest-assured-common/5.5.0/rest-assured-common-5.5.0.jar:/Users/srikanthkunnkunuru/.m2/repository/io/rest-assured/xml-path/5.5.0/xml-path-5.5.0.jar:/Users/srikanthkunnkunuru/.m2/repository/org/apache/commons/commons-lang3/3.11/commons-lang3-3.11.jar:/Users/srikanthkunnkunuru/.m2/repository/org/testng/testng/7.10.2/testng-7.10.2.jar:/Users/srikanthkunnkunuru/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Users/srikanthkunnkunuru/.m2/repository/com/beust/jcommander/1.82/jcommander-1.82.jar:/Users/srikanthkunnkunuru/.m2/repository/org/webjars/jquery/3.7.1/jquery-3.7.1.jar:"/>
+    <property name="java.vm.vendor" value="Homebrew"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://github.com/Homebrew/homebrew-core/issues"/>
+    <property name="user.timezone" value="Europe/Dublin"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="IE"/>
+    <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/srikanthkunnkunuru/api-framework/target/surefire/surefirebooter-20260622122236387_3.jar /Users/srikanthkunnkunuru/api-framework/target/surefire 2026-06-22T12-22-36_348-jvmRun1 surefire-20260622122236387_1tmp surefire_0-20260622122236387_2tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Users/srikanthkunnkunuru/api-framework/target/test-classes:/Users/srikanthkunnkunuru/api-framework/target/classes:/Users/srikanthkunnkunuru/.m2/repository/io/rest-assured/rest-assured/5.5.0/rest-assured-5.5.0.jar:/Users/srikanthkunnkunuru/.m2/repository/org/apache/groovy/groovy/4.0.22/groovy-4.0.22.jar:/Users/srikanthkunnkunuru/.m2/repository/org/apache/groovy/groovy-xml/4.0.22/groovy-xml-4.0.22.jar:/Users/srikanthkunnkunuru/.m2/repository/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar:/Users/srikanthkunnkunuru/.m2/repository/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar:/Users/srikanthkunnkunuru/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/srikanthkunnkunuru/.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11.jar:/Users/srikanthkunnkunuru/.m2/repository/org/apache/httpcomponents/httpmime/4.5.13/httpmime-4.5.13.jar:/Users/srikanthkunnkunuru/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/srikanthkunnkunuru/.m2/repository/org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar:/Users/srikanthkunnkunuru/.m2/repository/io/rest-assured/json-path/5.5.0/json-path-5.5.0.jar:/Users/srikanthkunnkunuru/.m2/repository/org/apache/groovy/groovy-json/4.0.22/groovy-json-4.0.22.jar:/Users/srikanthkunnkunuru/.m2/repository/io/rest-assured/rest-assured-common/5.5.0/rest-assured-common-5.5.0.jar:/Users/srikanthkunnkunuru/.m2/repository/io/rest-assured/xml-path/5.5.0/xml-path-5.5.0.jar:/Users/srikanthkunnkunuru/.m2/repository/org/apache/commons/commons-lang3/3.11/commons-lang3-3.11.jar:/Users/srikanthkunnkunuru/.m2/repository/org/testng/testng/7.10.2/testng-7.10.2.jar:/Users/srikanthkunnkunuru/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Users/srikanthkunnkunuru/.m2/repository/com/beust/jcommander/1.82/jcommander-1.82.jar:/Users/srikanthkunnkunuru/.m2/repository/org/webjars/jquery/3.7.1/jquery-3.7.1.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/srikanthkunnkunuru"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-04-21"/>
+    <property name="java.home" value="/opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/srikanthkunnkunuru/api-framework"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="/Users/srikanthkunnkunuru/api-framework/target/surefire/surefirebooter-20260622122236387_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="17.0.19+0"/>
+    <property name="user.name" value="srikanthkunnkunuru"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="15.5"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Homebrew"/>
+    <property name="localRepository" value="/Users/srikanthkunnkunuru/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/Homebrew/homebrew-core/issues"/>
+    <property name="java.io.tmpdir" value="/var/folders/gy/s4ykzntx1zq2t51p56bn84yw0000gn/T/"/>
+    <property name="java.version" value="17.0.19"/>
+    <property name="user.dir" value="/Users/srikanthkunnkunuru/api-framework"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/srikanthkunnkunuru/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Homebrew"/>
+    <property name="java.vm.version" value="17.0.19+0"/>
+    <property name="java.specification.maintenance.version" value="1"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.class.version" value="61.0"/>
+  </properties>
+  <testcase name="getInvalidUser_shouldReturn404" classname="com.automation.UserApiTest" time="0.757">
+    <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+  </testcase>
+  <testcase name="getUser_shouldHaveEmail" classname="com.automation.UserApiTest" time="0.261"/>
+  <testcase name="getUser_shouldReturn200" classname="com.automation.UserApiTest" time="0.053"/>
+</testsuite>
