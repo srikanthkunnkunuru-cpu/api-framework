@@ -22,4 +22,26 @@ public void createPost_shouldReturn201(){
                 .body("id",notNullValue());
 
     }
+    @Test
+    public void updatePost_shouldReturn200() {
+        String requestBody = "{\"title\": \"Updated Post\", \"body\": \"Updated content\", \"userId\": 1}";
+
+        given()
+                .header("Content-Type", "application/json")
+                .body(requestBody)
+                .when()
+                .put("/posts/1")
+                .then()
+                .statusCode(200)
+                .body("title", equalTo("Updated Post"));
+    }
+
+    @Test
+    public void deletePost_shouldReturn200() {
+        given()
+                .when()
+                .delete("/posts/1")
+                .then()
+                .statusCode(200);
+    }
 }
