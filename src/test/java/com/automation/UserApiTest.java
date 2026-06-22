@@ -1,3 +1,4 @@
+// GET request tests - JSONPlaceholder API
 package com.automation;
 
 import io.restassured.RestAssured;
