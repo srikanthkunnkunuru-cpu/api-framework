@@ -1,19 +1,11 @@
 // POST request test - created by Srikanth
 package com.automation;
-
-import io.restassured.RestAssured;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class PostAPITest {
-    @BeforeClass
-    public void setup() {
-        RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
-    }
+public class PostAPITest extends BaseTest {
 
     @Test
 public void createPost_shouldReturn201(){
