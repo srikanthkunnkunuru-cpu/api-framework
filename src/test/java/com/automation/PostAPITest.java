@@ -1,4 +1,4 @@
-// Written by Srikanth - API Automation Framework hello
+// POST request test - created by Srikanth
 package com.automation;
 
 import io.restassured.RestAssured;
