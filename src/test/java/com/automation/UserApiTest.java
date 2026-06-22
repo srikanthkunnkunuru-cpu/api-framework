@@ -43,5 +43,26 @@ public class UserApiTest {
                 .get("/users/9999")
             .then()
                 .statusCode(404);
+
+    }
+
+    @Test
+    public void getAllUsers_s200shouldReturn(){
+        given ()
+                .when()
+                .get("/users")
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    public void getPost_shouldReturn200() {
+        given()
+                .when()
+                .get("/posts/1")
+                .then()
+                .statusCode(200)
+                .body("id", equalTo(1))
+                .body("title", notNullValue());
     }
 }
