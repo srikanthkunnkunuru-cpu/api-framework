@@ -1,6 +1,7 @@
 package com.automation;
 
 import io.restassured.RestAssured;
+import java.io.FileNotFoundException;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
@@ -15,15 +16,24 @@ public class BaseTest {
 
     @BeforeClass
     public void setup() throws IOException {
-        FileInputStream file = new FileInputStream(
-                "src/test/resources/config.properties"
-        );
-        config.load(file);
+        try {
+            FileInputStream file = new FileInputStream(
+                    "src/test/resources/config.properties"
+            );
+            config.load(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("config.properties not found — using defaults");
+        }
 
-        RestAssured.baseURI = config.getProperty("baseURI");
+        String baseURI = config.getProperty("baseURI",
+                "https://reqres.in/api");
+        String apiKey = config.getProperty("apiKey",
+                "free_user_3FZwwpetGPR2mWvFS9nOEwZK2rp");
+
+        RestAssured.baseURI = baseURI;
 
         reqSpec = new RequestSpecBuilder()
-                .addHeader("x-api-key", config.getProperty("apiKey"))
+                .addHeader("x-api-key", apiKey)
                 .addHeader("Content-Type", "application/json")
                 .build();
     }
