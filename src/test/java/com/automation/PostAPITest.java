@@ -89,4 +89,46 @@ public class PostAPITest extends BaseTest {
                 .log().all()
                 .body("data.id", equalTo(2));
     }
+
+    // Negative Test cases
+
+    @Test
+    public void invalidApiKey_shouldReturn403() {
+        HashMap<String, Object> body = new HashMap<>();
+        body.put("name", "test");
+
+        given()
+                .header("Content-Type", "application/json")
+                .header("x-api-key", "wrong-key-123")
+                .body(body)
+                .when()
+                .post("/users")
+                .then()
+                .statusCode(403);
+    }
+    @Test
+    public void createPost_missingTitle_shouldReturn500(){
+        HashMap<String,Object> requestBody = new HashMap<>();
+        requestBody.put("body","learning API Automation");
+        requestBody.put("userId",1);
+        // title is missing deliberately
+
+        given()
+                .spec(reqSpec)
+                .body(requestBody)
+                .when()
+                .post("/posts")
+                .then()
+                .statusCode(201);
+    }
+
+    @Test
+    public void invalidEndpoint_shouldReturn404() {
+        given()
+                .spec(reqSpec)
+                .when()
+                .get("/nonexistent/endpoint")
+                .then()
+                .statusCode(404);
+    }
 }
