@@ -116,16 +116,15 @@ public class UserApiTest extends BaseTest {
     data.put ("UserName","Srikanth");
     data.put("position","manager");
 
-    String userId = given()
-            .spec(reqSpec)
-            .body(data)
-            .when()
-            .post("/users")
-            .then()
-            .log().all()
-            .body("Id", equalTo("UserName"))
-                    .statusCode(201)
-                    .extract().path("id");
+        String userId = given()
+                .spec(reqSpec)
+                .body(data)
+                .when()
+                .post("/users")
+                .then()
+                .log().all()
+                .statusCode(201)
+                .extract().path("id");
     System.out.println("Created user ID: " + userId);
     }
 
