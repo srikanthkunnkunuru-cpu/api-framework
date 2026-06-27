@@ -1,1 +1,4 @@
+com/automation/BaseTest.class
+com/automation/ExcelUtils.class
 com/automation/UserApiTest.class
+com/automation/PostAPITest.class

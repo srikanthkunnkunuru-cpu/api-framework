@@ -3,7 +3,9 @@ package com.automation;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.TestInstance;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
@@ -13,7 +15,7 @@ import static org.hamcrest.Matchers.notNullValue;
 public class PostAPITest extends BaseTest {
 
     @Test
-    public void createPost_shouldReturn201(){
+    public void createPost_shouldReturn201() {
         String requestBody = "{\"title\": \"My First Post\", \"body\": \"Learning API automation\", \"userId\": 1}";
         given()
                 .spec(reqSpec)
@@ -25,8 +27,9 @@ public class PostAPITest extends BaseTest {
                 .log().all()        // ← prints the RESPONSE
                 .statusCode(201)
                 .body("title", equalTo("My First Post"))
-                .body("id",notNullValue());
+                .body("id", notNullValue());
     }
+
     @Test
     public void updatePost_shouldReturn200() {
 
@@ -45,6 +48,7 @@ public class PostAPITest extends BaseTest {
                 .statusCode(200)
                 .body("title", equalTo("Updated Post"));
     }
+
     @Test
     public void deletePost_shouldReturn200() {
         given()
@@ -106,11 +110,12 @@ public class PostAPITest extends BaseTest {
                 .then()
                 .statusCode(403);
     }
+
     @Test
-    public void createPost_missingTitle_shouldReturn500(){
-        HashMap<String,Object> requestBody = new HashMap<>();
-        requestBody.put("body","learning API Automation");
-        requestBody.put("userId",1);
+    public void createPost_missingTitle_shouldReturn500() {
+        HashMap<String, Object> requestBody = new HashMap<>();
+        requestBody.put("body", "learning API Automation");
+        requestBody.put("userId", 1);
         // title is missing deliberately
 
         given()
@@ -131,4 +136,95 @@ public class PostAPITest extends BaseTest {
                 .then()
                 .statusCode(404);
     }
+
+    @DataProvider(name = "userData")
+    public Object[][] getUserData() {
+        return new Object[][]{
+                {"Srikanth", "QA Engineer"},
+                {"John", "Developer"},
+                {"Sarah", "Manager"}
+        };
+    }
+
+    @Test(dataProvider = "userData")
+    public void createMultipleUsers(String name, String job) {
+        HashMap<String, Object> requestBody = new HashMap<>();
+        requestBody.put("name", name);
+        requestBody.put("job", job);
+        given()
+                .spec(reqSpec)
+                .body(requestBody)
+                .when()
+                .post("/users")
+                .then()
+                .log().all()
+                .statusCode(201)
+                .body("name", equalTo(name));
+    }
+    @DataProvider (name = "invalidUserIds")
+    public Object [][] negativeData(){
+        return new Object[][] {
+                {9999},
+                {8888},
+                {7777},
+        };
+    }
+    @Test (dataProvider = "invalidUserIds")
+    public void negativeData_shouldReturn404(int invalidId){
+        given()
+                .spec(reqSpec)
+                .when()
+                .get("/users/" + invalidId)
+                .then()
+                .statusCode(404);
+    }
+
+    @Test
+    public void ifElse_shouldReturn200(){
+         int  statusCode = given()
+                 .spec(reqSpec)
+                 .when()
+                 .get("/users 1/")
+                // .get("/unknown/endpoint")
+                 .then()
+                 .log().all()
+                 .extract().statusCode();
+        if (statusCode == 200) {
+            System.out.println("user exists");
+        } else if (statusCode == 404) {
+            System.out.println("user not found");
+        } else if (statusCode == 401) {
+            System.out.println("not authorized");
+        } else {
+            System.out.println("unexpected status: " + statusCode);
+        }
+    }
+    @Test
+    public void createUsers_fromExcel() throws IOException {
+        Object[][] data = ExcelUtils.readExcelData(
+                "src/test/resources/testdata.xlsx"
+        );
+
+        for (Object[] row : data) {
+            String name = row[0].toString();
+            String job  = row[1].toString();
+
+            HashMap<String, Object> requestBody = new HashMap<>();
+            requestBody.put("name", name);
+            requestBody.put("job", job);
+
+            given()
+                    .spec(reqSpec)
+                    .body(requestBody)
+                    .when()
+                    .post("/users")
+                    .then()
+                    .log().all()
+                    .statusCode(201)
+                    .body("name", equalTo(name));
+
+            System.out.println("Created user: " + name + " — " + job);
+        }
+    }
 }
+
