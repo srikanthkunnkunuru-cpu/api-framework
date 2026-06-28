@@ -127,7 +127,6 @@ public class UserApiTest extends BaseTest {
                 .extract().path("id");
     System.out.println("Created user ID: " + userId);
     }
-
     @Test
     public void extractingId_shouldRetrun200(){
         String firstName = given()

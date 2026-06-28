@@ -1,19 +1,20 @@
 package com.automation;
 
 import io.restassured.RestAssured;
-import java.io.FileNotFoundException;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+@Listeners(TestListener.class)
 public class BaseTest {
 
     protected static Properties config = new Properties();
     protected static RequestSpecification reqSpec;
-
     @BeforeClass
     public void setup() throws IOException {
         try {

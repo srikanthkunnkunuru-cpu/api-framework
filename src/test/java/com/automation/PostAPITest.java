@@ -161,16 +161,18 @@ public class PostAPITest extends BaseTest {
                 .statusCode(201)
                 .body("name", equalTo(name));
     }
-    @DataProvider (name = "invalidUserIds")
-    public Object [][] negativeData(){
-        return new Object[][] {
+
+    @DataProvider(name = "invalidUserIds")
+    public Object[][] negativeData() {
+        return new Object[][]{
                 {9999},
                 {8888},
                 {7777},
         };
     }
-    @Test (dataProvider = "invalidUserIds")
-    public void negativeData_shouldReturn404(int invalidId){
+
+    @Test(dataProvider = "invalidUserIds")
+    public void negativeData_shouldReturn404(int invalidId) {
         given()
                 .spec(reqSpec)
                 .when()
@@ -180,15 +182,15 @@ public class PostAPITest extends BaseTest {
     }
 
     @Test
-    public void ifElse_shouldReturn200(){
-         int  statusCode = given()
-                 .spec(reqSpec)
-                 .when()
-                 .get("/users 1/")
+    public void ifElse_shouldReturn200() {
+        int statusCode = given()
+                .spec(reqSpec)
+                .when()
+                .get("/users 1/")
                 // .get("/unknown/endpoint")
-                 .then()
-                 .log().all()
-                 .extract().statusCode();
+                .then()
+                .log().all()
+                .extract().statusCode();
         if (statusCode == 200) {
             System.out.println("user exists");
         } else if (statusCode == 404) {
@@ -200,31 +202,38 @@ public class PostAPITest extends BaseTest {
         }
     }
     @Test
-    public void createUsers_fromExcel() throws IOException {
+    public void runApiCollection_fromExcel() throws IOException {
         Object[][] data = ExcelUtils.readExcelData(
-                "src/test/resources/testdata.xlsx"
+                "src/test/resources/testdata.xlsx", "ApiCollection"
         );
 
         for (Object[] row : data) {
-            String name = row[0].toString();
-            String job  = row[1].toString();
+            String method         = row[0].toString();
+            String url            = row[1].toString();
+            String payload        = row[2] != null ? row[2].toString() : "";
+            int expectedStatus    = Integer.parseInt(row[3].toString());
 
-            HashMap<String, Object> requestBody = new HashMap<>();
-            requestBody.put("name", name);
-            requestBody.put("job", job);
+            if (method.equals("POST")) {
+                given().spec(reqSpec).body(payload)
+                        .when().post(url)
+                        .then().statusCode(expectedStatus);
 
-            given()
-                    .spec(reqSpec)
-                    .body(requestBody)
-                    .when()
-                    .post("/users")
-                    .then()
-                    .log().all()
-                    .statusCode(201)
-                    .body("name", equalTo(name));
+            } else if (method.equals("GET")) {
+                given().spec(reqSpec)
+                        .when().get(url)
+                        .then().statusCode(expectedStatus);
 
-            System.out.println("Created user: " + name + " — " + job);
+            } else if (method.equals("PUT")) {
+                given().spec(reqSpec).body(payload)
+                        .when().put(url)
+                        .then().statusCode(expectedStatus);
+
+            } else if (method.equals("DELETE")) {
+                given().spec(reqSpec)
+                        .when().delete(url)
+                        .then().statusCode(expectedStatus);
+            }
+            System.out.println(method + " " + url + " → " + expectedStatus);
         }
     }
 }
-
