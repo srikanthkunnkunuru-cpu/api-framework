@@ -7,8 +7,9 @@ import org.testng.annotations.TestInstance;
 
 import java.io.IOException;
 import java.util.HashMap;
-
+import java.io.File;
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
@@ -204,7 +205,7 @@ public class PostAPITest extends BaseTest {
     @Test
     public void runApiCollection_fromExcel() throws IOException {
         Object[][] data = ExcelUtils.readExcelData(
-                "src/test/resources/testdata.xlsx", "ApiCollection"
+                Constants.TEST_DATA_FILE, Constants.SHEET_USERS
         );
 
         for (Object[] row : data) {
@@ -235,5 +236,23 @@ public class PostAPITest extends BaseTest {
             }
             System.out.println(method + " " + url + " → " + expectedStatus);
         }
+    }
+    @Test
+    public void create_userSchema_shouldReturn201(){
+        HashMap <String, Object> dataBody = new HashMap<>();
+        dataBody.put("name", "srikanth");
+        dataBody.put ("job","qa");
+
+        given()
+                .spec(reqSpec)
+                .body(dataBody)      // ← body in given()
+                .when()
+                .post("/users")
+                .then()// ← post in when()
+                .log().all()
+                .statusCode(201)
+                .body(matchesJsonSchema(
+                        new File(Constants.CREATE_USER_SCHEMA)
+                ));
     }
 }

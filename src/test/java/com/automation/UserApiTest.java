@@ -4,9 +4,11 @@ import io.restassured.RestAssured;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
-
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.requestSpecification;
 import static org.hamcrest.Matchers.equalTo;
@@ -205,5 +207,16 @@ public class UserApiTest extends BaseTest {
 
             System.out.println("User " + i + " zipcode: " + zipcode);
         }
+    }
+    @Test
+    public void validateUserSchema_shouldReturn200() throws Exception {
+        given()
+                .when()
+                .get("/users/1")
+                .then()
+                .statusCode(200)
+                .body(matchesJsonSchema(
+                        new File(Constants.USER_SCHEMA)
+                ));
     }
 }
