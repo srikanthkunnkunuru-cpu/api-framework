@@ -219,4 +219,24 @@ public class UserApiTest extends BaseTest {
                         new File(Constants.USER_SCHEMA)
                 ));
     }
+    @Test //basic authentication with password and username
+    public void basicAuth_shouldReturn200() {
+        given()
+                .auth().basic("postman", "password")
+                .when()
+                .get("https://postman-echo.com/basic-auth")
+                .then()
+                .log().all()
+                .statusCode(200)
+                .body("authenticated", equalTo(true));
+    }
+    @Test
+    public void basicAuth_wrongPassword_shouldReturn401() {
+        given()
+                .auth().basic("postman", "wrongpassword")
+                .when()
+                .get("https://postman-echo.com/basic-auth")
+                .then()
+                .statusCode(401);
+    }
 }

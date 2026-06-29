@@ -255,4 +255,27 @@ public class PostAPITest extends BaseTest {
                         new File(Constants.CREATE_USER_SCHEMA)
                 ));
     }
+    @Test
+    public void bearertoke_shouldReturn200(){
+        HashMap<String, Object> bodytoken = new HashMap<>();
+        bodytoken.put("email", "eve.holt@reqres.in");
+        bodytoken.put("password", "cityslicka");
+         String token =  given()
+                .spec(reqSpec)
+                .body(bodytoken)
+                .when()
+                .post("/login")
+                .then()
+                .statusCode(200)
+                .extract().path("token");
+        System.out.println("Token: " + token);
+        given()
+                .spec(reqSpec)
+                .auth().oauth2(token)
+                .when()
+                .get("/users/1")
+                .then()
+                .log().all()
+                .statusCode(200);
+    }
 }
