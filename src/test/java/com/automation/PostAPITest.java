@@ -3,7 +3,6 @@ package com.automation;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.TestInstance;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -277,5 +276,48 @@ public class PostAPITest extends BaseTest {
                 .then()
                 .log().all()
                 .statusCode(200);
+    }
+    @Test
+    public void createUser_withPOJO_shouldReturn201() {
+        User user = new User("email", "eve.holt@reqres.in", "Srikanth", "QA Engineer");
+
+        given()
+                .spec(reqSpec)
+                .body(user)
+                .when()
+                .post("/users")
+                .then()
+                .log().all()
+                .statusCode(201)
+                .body("name", equalTo("Srikanth"))
+                .body("job", equalTo("QA Engineer"));
+    }
+    @Test
+    public void createnewuser_POJO_shouldReturn201(){
+        User user = new User("Srikanth", "QA Engineer", "srikanth@test.com", "0871234567", 28);
+        given()
+                .spec(reqSpec)
+                .body(user)        // ← attach User object here
+                .when()
+                .post("/users")    // ← HTTP method here
+                .then()
+                .log().all()
+                .statusCode(201)
+                .body("name", equalTo("Srikanth"));
+    }
+    @Test
+    public void POJOLOGIN_shouldReturn200() {
+        LoginRequest loginRequest = new LoginRequest("eve.holt@reqres.in", "cityslicka");
+        String token = given()
+                .spec(reqSpec)
+                .body(loginRequest)
+                .when()
+                .post("/login")
+                .then()
+                .log().all()
+                .statusCode(200)
+                .body("token", notNullValue())
+        .extract().path("token");
+        System.out.println("token : " + token);
     }
 }
